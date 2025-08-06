@@ -6,31 +6,27 @@ This application is designed to be run as a live website, which you can then ins
 
 ---
 
-## How to Launch Your App (The Easy Way)
+## How to Launch Your App on Netlify
 
-You are very close to having your own live version of the app! You just need to get the code online. I've made the last step super simple for you.
+Follow these steps to deploy your own live version of the WellnessCraft app.
 
 ### Step 1: Get Your Secret API Key
-Your app needs a secret key to use the AI.
+Your app needs a secret key to use the Google AI.
 
 1.  Go to the [**Google AI Studio**](https://aistudio.google.com/app/apikey).
-2.  Click the **"Create API key"** button and copy the key. You'll need it in the next step.
+2.  Click the **"Create API key"** button and copy the key. You'll need it in Step 3.
 
-### Step 2: Click the Deploy Button!
+### Step 2: Push Your Code to GitHub
+Ensure all the code for your app is in a public or private GitHub repository that you have access to.
 
-Once all the code files are in your public GitHub repository, the magic happens. Just come back to this `README.md` file on your GitHub page and click the button below.
+### Step 3: Deploy on Netlify
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/bernieschaap/bernadette-wellness-app)
-
-### Step 3: Configure and Deploy on Netlify
-
-After clicking the button, you'll be taken to the Netlify website.
-
-1.  Connect your GitHub account.
-2.  Look for a section for **Environment variables**. You need to add one:
+1.  Log in to your [Netlify account](https://app.netlify.com).
+2.  Click on **"Add new site"** and then choose **"Import an existing project"**.
+3.  Connect to your Git provider (e.g., GitHub) and select the repository for this application.
+4.  Netlify should automatically detect the settings from the `netlify.toml` file. In the configuration section for environment variables, add the following:
     *   **Key**: `API_KEY`
-    *   **Value**: Paste the secret key you got from Google AI Studio.
-3.  Click the final **"Deploy site"** button.
-4.  Wait a minute while Netlify builds and launches your app.
+    *   **Value**: Paste the secret key you copied from Google AI Studio in Step 1.
+5.  Click the **"Deploy site"** button.
 
-That's it! Netlify will give you your public website address. You can now visit it on any device to use and install your application.
+That's it! Netlify will build and launch your app. Once it's done, you'll get a public website address (like `your-app-name.netlify.app`). You can now visit it on any device to use and install your application.
