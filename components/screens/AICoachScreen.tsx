@@ -40,7 +40,7 @@ const AICoachScreen = ({ profile, onSaveChatHistory }: { profile: Profile; onSav
         } else {
             setCurrentChat([]);
         }
-    }, [profile.id]); // Reruns when profile changes
+    }, [profile.id, tempChatKey, draftKey]); // Reruns when profile changes
 
     // Persist temporary chat to local storage whenever it changes
     useEffect(() => {
