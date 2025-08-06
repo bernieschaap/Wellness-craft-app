@@ -1,7 +1,9 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import type { Profile, ChatHistoryContent } from '../../types';
 import { sendMessageStream } from '../../services/geminiService';
 import PaperAirplaneIcon from '../icons/PaperAirplaneIcon';
+import ArrowPathIcon from '../icons/ArrowPathIcon';
 
 const AICoachScreen = ({ profile, onSaveChatHistory }: { profile: Profile; onSaveChatHistory: (userMessage: string, modelResponse: string) => void; }) => {
     const [input, setInput] = useState('');
@@ -12,22 +14,44 @@ const AICoachScreen = ({ profile, onSaveChatHistory }: { profile: Profile; onSav
 
     const messagesEndRef = useRef<HTMLDivElement>(null);
     const draftKey = `wellnessCraft-chatDraft-${profile.id}`;
+    const tempChatKey = `wellnessCraft-tempChat-${profile.id}`;
 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     };
-    
-    // Load draft from local storage on component mount or profile change
+
+    // Load draft and temporary chat from local storage on mount/profile change
     useEffect(() => {
         const savedDraft = localStorage.getItem(draftKey);
         if (savedDraft) {
             setInput(savedDraft);
         } else {
-            setInput(''); // Clear input when profile changes and no draft exists
+            setInput('');
         }
-        // Also reset chat when profile changes
-        setCurrentChat([]);
-    }, [profile.id, draftKey]);
+
+        const savedTempChat = localStorage.getItem(tempChatKey);
+        if (savedTempChat) {
+            try {
+                setCurrentChat(JSON.parse(savedTempChat));
+            } catch (e) {
+                console.error("Failed to parse temp chat from localStorage", e);
+                setCurrentChat([]);
+            }
+        } else {
+            setCurrentChat([]);
+        }
+    }, [profile.id]); // Reruns when profile changes
+
+    // Persist temporary chat to local storage whenever it changes
+    useEffect(() => {
+        if (currentChat.length > 0) {
+            localStorage.setItem(tempChatKey, JSON.stringify(currentChat));
+        } else {
+            // This will run when currentChat is cleared on success,
+            // or when it's empty initially.
+            localStorage.removeItem(tempChatKey);
+        }
+    }, [currentChat, tempChatKey]);
 
 
     useEffect(() => {
@@ -43,6 +67,16 @@ const AICoachScreen = ({ profile, onSaveChatHistory }: { profile: Profile; onSav
             localStorage.removeItem(draftKey);
         }
     };
+    
+    const handleRefreshChat = () => {
+        setIsLoading(false); // Stop any loading state
+        setStreamingResponse('');
+        setError(null);
+        setCurrentChat([]);
+        setInput('');
+        localStorage.removeItem(tempChatKey);
+        localStorage.removeItem(draftKey);
+    };
 
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -52,14 +86,14 @@ const AICoachScreen = ({ profile, onSaveChatHistory }: { profile: Profile; onSav
         const userMessage = input;
         const newUserMessageContent: ChatHistoryContent = { role: 'user', parts: [{ text: userMessage }] };
 
-        // History for the API call should be everything *before* the new message
         const historyForApi = [...profile.chatHistory, ...currentChat];
         
         setIsLoading(true);
         setError(null);
         setStreamingResponse('');
-        // Optimistically update UI with the new message
         setCurrentChat(prev => [...prev, newUserMessageContent]);
+        setInput('');
+        localStorage.removeItem(draftKey);
 
         try {
             const stream = await sendMessageStream(profile.userDetails, historyForApi, userMessage);
@@ -71,16 +105,16 @@ const AICoachScreen = ({ profile, onSaveChatHistory }: { profile: Profile; onSav
             }
             onSaveChatHistory(userMessage, fullResponse);
 
-            // On success, clear the input, remove the draft from storage, and clear the temporary chat
-            setInput('');
-            localStorage.removeItem(draftKey);
-            setCurrentChat([]); // Clear temporary chat once saved
+            setCurrentChat([]); // On success, clear the temp chat
         } catch (err) {
             const errorMessage = err instanceof Error ? err.message : 'An unexpected error occurred.';
             setError(errorMessage);
             console.error(err);
-             // On error, remove the optimistic user message from the display so they can try again
+            
+            // On error, remove the optimistic message from the temp chat and restore the input
             setCurrentChat(prev => prev.filter(msg => msg !== newUserMessageContent));
+            setInput(userMessage);
+            localStorage.setItem(draftKey, userMessage);
         } finally {
             setIsLoading(false);
             setStreamingResponse('');
@@ -91,8 +125,16 @@ const AICoachScreen = ({ profile, onSaveChatHistory }: { profile: Profile; onSav
 
     return (
         <div className="flex flex-col h-[75vh] max-w-4xl mx-auto bg-gray-800 rounded-lg border border-gray-700 shadow-xl">
-            <header className="p-4 border-b border-gray-700">
-                <h3 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-fuchsia-500 text-center">AI Wellness Coach</h3>
+            <header className="relative flex items-center justify-center p-4 border-b border-gray-700">
+                <h3 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-fuchsia-500">AI Wellness Coach</h3>
+                <button
+                    onClick={handleRefreshChat}
+                    className="absolute right-4 text-gray-400 hover:text-white transition-colors p-1 rounded-full hover:bg-gray-600"
+                    title="Refresh Chat"
+                    aria-label="Refresh Chat"
+                >
+                    <ArrowPathIcon className="w-5 h-5" />
+                </button>
             </header>
             
             <div className="flex-1 p-4 overflow-y-auto space-y-4">
