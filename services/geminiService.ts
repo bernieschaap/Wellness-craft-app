@@ -1,4 +1,5 @@
-import type { UserDetails, WellnessPlan, Recipe, RecipePreferences, ChatHistoryContent, WeeklySchedule, DailyMealPlan, ShoppingList } from '../types';
+
+import type { UserDetails, WellnessPlan, Recipe, RecipePreferences, ChatHistoryContent, DailyMealPlan, ShoppingList } from '../types.ts';
 
 const API_ENDPOINT = '/.netlify/functions/gemini';
 
@@ -47,13 +48,18 @@ export const sendMessageStream = async (details: UserDetails, history: ChatHisto
     const decoder = new TextDecoder();
     
     async function* streamGenerator() {
-        while (true) {
-            const { value, done } = await reader.read();
-            if (done) {
-                break;
+        try {
+            while (true) {
+                const { value, done } = await reader.read();
+                if (done) {
+                    break;
+                }
+                // The yielded value needs to have a .text property to match the UI component's expectation
+                yield { text: decoder.decode(value) };
             }
-            // The yielded value needs to have a .text property to match the UI component's expectation
-            yield { text: decoder.decode(value) };
+        } catch (error) {
+            console.error("Error reading response stream:", error);
+            throw new Error("Failed to process stream from server. The connection may have been interrupted.");
         }
     }
     

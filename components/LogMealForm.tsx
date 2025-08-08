@@ -1,9 +1,9 @@
 
 import React, { useState, useRef } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import type { MealLog } from '../types';
-import { analyzeMealPhoto } from '../services/geminiService';
-import CameraIcon from './icons/CameraIcon';
+import type { MealLog } from '../types.ts';
+import { analyzeMealPhoto } from '../services/geminiService.ts';
+import CameraIcon from './icons/CameraIcon.tsx';
 
 interface LogMealFormProps {
     onLogMeal: (log: MealLog) => void;

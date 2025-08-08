@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import type { UserDetails, WeeklySchedule, DaySchedule } from '../types';
+import type { UserDetails, WeeklySchedule, DaySchedule } from '../types.ts';
 
 interface ProfileFormProps {
   onGeneratePlan: (name: string, details: UserDetails) => void;

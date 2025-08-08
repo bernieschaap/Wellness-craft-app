@@ -1,9 +1,9 @@
 
 import React from 'react';
-import type { Profile } from '../../types';
-import WaterTracker from '../WaterTracker';
-import RecipeGenerator from '../RecipeGenerator';
-import ShoppingListGenerator from '../ShoppingListGenerator';
+import type { Profile } from '../../types.ts';
+import WaterTracker from '../WaterTracker.tsx';
+import RecipeGenerator from '../RecipeGenerator.tsx';
+import ShoppingListGenerator from '../ShoppingListGenerator.tsx';
 
 interface ToolsScreenProps {
     profile: Profile;

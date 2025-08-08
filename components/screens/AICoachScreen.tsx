@@ -1,9 +1,9 @@
 
 import React, { useState, useRef, useEffect } from 'react';
-import type { Profile, ChatHistoryContent } from '../../types';
-import { sendMessageStream } from '../../services/geminiService';
-import PaperAirplaneIcon from '../icons/PaperAirplaneIcon';
-import ArrowPathIcon from '../icons/ArrowPathIcon';
+import type { Profile, ChatHistoryContent } from '../../types.ts';
+import { sendMessageStream } from '../../services/geminiService.ts';
+import PaperAirplaneIcon from '../icons/PaperAirplaneIcon.tsx';
+import ArrowPathIcon from '../icons/ArrowPathIcon.tsx';
 
 const AICoachScreen = ({ profile, onSaveChatHistory }: { profile: Profile; onSaveChatHistory: (userMessage: string, modelResponse: string) => void; }) => {
     const [input, setInput] = useState('');

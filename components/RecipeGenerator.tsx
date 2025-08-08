@@ -1,9 +1,9 @@
 
 import React, { useState } from 'react';
-import type { Recipe, RecipePreferences } from '../types';
-import { generateRecipe } from '../services/geminiService';
-import LoadingSpinner from './LoadingSpinner';
-import ChefHatIcon from './icons/ChefHatIcon';
+import type { Recipe, RecipePreferences } from '../types.ts';
+import { generateRecipe } from '../services/geminiService.ts';
+import LoadingSpinner from './LoadingSpinner.tsx';
+import ChefHatIcon from './icons/ChefHatIcon.tsx';
 
 const RecipeGenerator: React.FC = () => {
     const [preferences, setPreferences] = useState<RecipePreferences>({

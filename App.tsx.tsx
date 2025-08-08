@@ -1,12 +1,12 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import Header from './components/Header';
-import ProfileSelectionScreen from './components/screens/ProfileSelectionScreen';
-import Dashboard from './components/screens/Dashboard';
-import LoadingSpinner from './components/LoadingSpinner';
-import { generateWellnessPlan } from './services/geminiService';
-import type { UserDetails, WellnessPlan, Profile, WeightLog, MealLog, WorkoutLog, MeasurementLog, WaterLog, ChatHistoryContent } from './types';
+import Header from './components/Header.tsx';
+import ProfileSelectionScreen from './components/screens/ProfileSelectionScreen.tsx';
+import Dashboard from './components/screens/Dashboard.tsx';
+import LoadingSpinner from './components/LoadingSpinner.tsx';
+import { generateWellnessPlan } from './services/geminiService.ts';
+import type { UserDetails, WellnessPlan, Profile, WeightLog, MealLog, WorkoutLog, MeasurementLog, WaterLog, ChatHistoryContent } from './types.ts';
 
 const App = () => {
   const [profiles, setProfiles] = useState<Profile[]>([]);
@@ -213,6 +213,13 @@ const App = () => {
           chatHistory: [...p.chatHistory, userContent, modelContent]
       }));
   };
+  
+  const handleClearChatHistory = () => {
+    updateProfile(p => ({
+        ...p,
+        chatHistory: []
+    }));
+  };
 
   const activeProfile = profiles.find(p => p.id === activeProfileId);
 
@@ -253,6 +260,7 @@ const App = () => {
                 onLogMeasurements={handleLogMeasurements}
                 onLogWater={handleLogWater}
                 onSaveChatHistory={handleSaveChatHistory}
+                onClearChatHistory={handleClearChatHistory}
             />
           )}
 
