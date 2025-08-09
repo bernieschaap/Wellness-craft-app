@@ -1,6 +1,6 @@
 
 import React from 'react';
-import HeartPulseIcon from './icons/HeartPulseIcon.tsx'; // Repurposed SparklesIcon
+import HeartPulseIcon from '@/components/icons/HeartPulseIcon.tsx'; // Repurposed SparklesIcon
 
 const Header = () => {
   return (

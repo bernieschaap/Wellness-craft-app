@@ -1,10 +1,10 @@
 
 import React, { useState } from 'react';
-import type { Profile, MealLog, WorkoutLog } from '../../types.ts';
-import LogMealForm from '../LogMealForm.tsx';
-import LogWorkoutForm from '../LogWorkoutForm.tsx';
-import ForkKnifeIcon from '../icons/ForkKnifeIcon.tsx';
-import DumbbellIcon from '../icons/DumbbellIcon.tsx';
+import type { Profile, MealLog, WorkoutLog } from '@/types.ts';
+import LogMealForm from '@/components/LogMealForm.tsx';
+import LogWorkoutForm from '@/components/LogWorkoutForm.tsx';
+import ForkKnifeIcon from '@/components/icons/ForkKnifeIcon.tsx';
+import DumbbellIcon from '@/components/icons/DumbbellIcon.tsx';
 
 const CalorieTracker = ({
     current,

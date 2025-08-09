@@ -1,7 +1,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
-import type { Profile } from '../../types.ts';
-import TrashCanIcon from '../icons/TrashCanIcon.tsx';
+import type { Profile } from '@/types.ts';
+import TrashCanIcon from '@/components/icons/TrashCanIcon.tsx';
 
 interface HistoryScreenProps {
     profile: Profile;

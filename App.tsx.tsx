@@ -1,12 +1,12 @@
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import Header from './components/Header.tsx';
-import ProfileSelectionScreen from './components/screens/ProfileSelectionScreen.tsx';
-import Dashboard from './components/screens/Dashboard.tsx';
-import LoadingSpinner from './components/LoadingSpinner.tsx';
-import { generateWellnessPlan } from './services/geminiService.ts';
-import type { UserDetails, WellnessPlan, Profile, WeightLog, MealLog, WorkoutLog, MeasurementLog, WaterLog, ChatHistoryContent } from './types.ts';
+import Header from '@/components/Header.tsx';
+import ProfileSelectionScreen from '@/components/screens/ProfileSelectionScreen.tsx';
+import Dashboard from '@/components/screens/Dashboard.tsx';
+import LoadingSpinner from '@/components/LoadingSpinner.tsx';
+import { generateWellnessPlan } from '@/services/geminiService.ts';
+import type { UserDetails, WellnessPlan, Profile, WeightLog, MealLog, WorkoutLog, MeasurementLog, WaterLog, ChatHistoryContent } from '@/types.ts';
 
 const App = () => {
   const [profiles, setProfiles] = useState<Profile[]>([]);

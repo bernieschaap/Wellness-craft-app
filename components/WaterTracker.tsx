@@ -1,7 +1,7 @@
 
 import React from 'react';
-import type { WaterLog } from '../types.ts';
-import WaterDropIcon from './icons/WaterDropIcon.tsx';
+import type { WaterLog } from '@/types.ts';
+import WaterDropIcon from '@/components/icons/WaterDropIcon.tsx';
 
 interface WaterTrackerProps {
     waterLogs: WaterLog[];

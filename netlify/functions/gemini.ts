@@ -1,7 +1,7 @@
 
 import type { Handler, HandlerEvent } from "@netlify/functions";
 import { GoogleGenAI, Type } from "@google/genai";
-import type { UserDetails, WellnessPlan, Recipe, RecipePreferences, ChatHistoryContent, WeeklySchedule, DailyMealPlan, ShoppingList } from '../../types.ts';
+import type { UserDetails, WellnessPlan, Recipe, RecipePreferences, ChatHistoryContent, WeeklySchedule, DailyMealPlan, ShoppingList } from '@/types.ts';
 
 // Cached AI instance
 let ai: GoogleGenAI;

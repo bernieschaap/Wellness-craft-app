@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
-import type { WeightLog, MeasurementLog } from '../types.ts';
-import ScaleIcon from './icons/ScaleIcon.tsx';
+import type { WeightLog, MeasurementLog } from '@/types.ts';
+import ScaleIcon from '@/components/icons/ScaleIcon.tsx';
 import { Line } from 'react-chartjs-2';
 import {
   Chart as ChartJS,

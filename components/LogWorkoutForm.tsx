@@ -1,8 +1,8 @@
 
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import type { WorkoutLog, LoggedExercise, LoggedExerciseSet } from '../types.ts';
-import PlusCircleIcon from './icons/PlusCircleIcon.tsx';
+import type { WorkoutLog, LoggedExercise, LoggedExerciseSet } from '@/types.ts';
+import PlusCircleIcon from '@/components/icons/PlusCircleIcon.tsx';
 
 interface LogWorkoutFormProps {
     onLogWorkout: (log: WorkoutLog) => void;

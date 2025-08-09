@@ -1,5 +1,5 @@
 
-import type { UserDetails, WellnessPlan, Recipe, RecipePreferences, ChatHistoryContent, DailyMealPlan, ShoppingList } from '../types.ts';
+import type { UserDetails, WellnessPlan, Recipe, RecipePreferences, ChatHistoryContent, DailyMealPlan, ShoppingList } from '@/types.ts';
 
 const API_ENDPOINT = '/.netlify/functions/gemini';
 

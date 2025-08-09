@@ -1,10 +1,10 @@
 
 import React, { useState } from 'react';
-import type { DailyMealPlan, ShoppingList } from '../types.ts';
-import { generateShoppingList } from '../services/geminiService.ts';
-import LoadingSpinner from './LoadingSpinner.tsx';
-import ShoppingCartIcon from './icons/ShoppingCartIcon.tsx';
-import PrinterIcon from './icons/PrinterIcon.tsx';
+import type { DailyMealPlan, ShoppingList } from '@/types.ts';
+import { generateShoppingList } from '@/services/geminiService.ts';
+import LoadingSpinner from '@/components/LoadingSpinner.tsx';
+import ShoppingCartIcon from '@/components/icons/ShoppingCartIcon.tsx';
+import PrinterIcon from '@/components/icons/PrinterIcon.tsx';
 
 interface ShoppingListGeneratorProps {
     mealPlan: DailyMealPlan[];

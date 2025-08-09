@@ -1,10 +1,10 @@
 
 import React from 'react';
-import type { WellnessPlan, DailyExercisePlan } from '../types.ts';
-import DumbbellIcon from './icons/DumbbellIcon.tsx';
-import ForkKnifeIcon from './icons/ForkKnifeIcon.tsx';
-import YogaIcon from './icons/YogaIcon.tsx';
-import PrinterIcon from './icons/PrinterIcon.tsx';
+import type { WellnessPlan, DailyExercisePlan } from '@/types.ts';
+import DumbbellIcon from '@/components/icons/DumbbellIcon.tsx';
+import ForkKnifeIcon from '@/components/icons/ForkKnifeIcon.tsx';
+import YogaIcon from '@/components/icons/YogaIcon.tsx';
+import PrinterIcon from '@/components/icons/PrinterIcon.tsx';
 
 interface PlanDisplayProps {
     plan: WellnessPlan;

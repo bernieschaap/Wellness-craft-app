@@ -1,10 +1,9 @@
-
 import React, { useState } from 'react';
-import type { Profile, UserDetails } from '../../types.ts';
-import ProfileForm from '../../components/IdeaInputForm.tsx'; // Repurposed to ProfileForm
-import PlusCircleIcon from '../icons/PlusCircleIcon.tsx';
-import LoadingSpinner from '../LoadingSpinner.tsx';
-import TrashCanIcon from '../icons/TrashCanIcon.tsx';
+import type { Profile, UserDetails } from '@/types.ts';
+import ProfileForm from '@/components/IdeaInputForm.tsx';
+import PlusCircleIcon from '@/components/icons/PlusCircleIcon.tsx';
+import LoadingSpinner from '@/components/LoadingSpinner.tsx';
+import TrashCanIcon from '@/components/icons/TrashCanIcon.tsx';
 
 interface ProfileSelectionScreenProps {
   profiles: Profile[];
