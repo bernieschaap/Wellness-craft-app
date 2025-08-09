@@ -1,19 +1,19 @@
 
 import React, { useState } from 'react';
 import type { Profile, WeightLog, MealLog, WorkoutLog, MeasurementLog } from '../../types.ts';
-import PlanDisplay from '/components/ResultCard.tsx';
-import ProgressTracker from '/components/ProgressTracker.tsx';
+import PlanDisplay from '../ResultCard.tsx';
+import ProgressTracker from '../ProgressTracker.tsx';
 import JournalScreen from './JournalScreen.tsx';
 import ToolsScreen from './ToolsScreen.tsx';
 import AICoachScreen from './AICoachScreen.tsx';
 import HistoryScreen from './HistoryScreen.tsx';
-import ArrowLeftOnRectangleIcon from '/components/icons/ArrowLeftOnRectangleIcon.tsx';
-import DumbbellIcon from '/components/icons/DumbbellIcon.tsx';
-import ChartBarIcon from '/components/icons/ChartBarIcon.tsx';
-import BookOpenIcon from '/components/icons/BookOpenIcon.tsx';
-import ToolsIcon from '/components/icons/ToolsIcon.tsx';
-import SparklesIcon from '/components/icons/SparklesIcon.tsx';
-import HistoryIcon from '/components/icons/HistoryIcon.tsx';
+import ArrowLeftOnRectangleIcon from '../icons/ArrowLeftOnRectangleIcon.tsx';
+import DumbbellIcon from '../icons/DumbbellIcon.tsx';
+import ChartBarIcon from '../icons/ChartBarIcon.tsx';
+import BookOpenIcon from '../icons/BookOpenIcon.tsx';
+import ToolsIcon from '../icons/ToolsIcon.tsx';
+import SparklesIcon from '../icons/SparklesIcon.tsx';
+import HistoryIcon from '../icons/HistoryIcon.tsx';
 
 
 interface DashboardProps {
